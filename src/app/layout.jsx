@@ -10,6 +10,7 @@ const lato = Lato({
 export const metadata = {
   title: "Assesment-blog",
   description: "",
+  viewport: "width=device-width, initial-scale=1",
   robots: {
     index: true,
     follow: true,
@@ -28,9 +29,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </head>
       <body className={`${lato.variable}`} suppressHydrationWarning>
         {children}
       </body>

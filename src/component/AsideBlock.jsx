@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import useWindowWidth from "@/hook/useWindowWidth";
 import TourGuides from "./TourGuides";
@@ -14,7 +14,14 @@ const PostCard = dynamic(() => import("../component/PostCard"), {
 
 export default function AsideBlock(props) {
   const width = useWindowWidth();
-  if (width === undefined) return null;
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const showDesktopVersion = isClient && width >= 767;
+
   return (
     <aside className="sidebar">
       <div className="sidebar_explore_posts">
@@ -22,7 +29,7 @@ export default function AsideBlock(props) {
           <h2 className="title">Explore more</h2>
         </div>
 
-        {width >= 767 ? (
+        {showDesktopVersion ? (
           <div className="post_card_list">
             {props.posts &&
               props.posts.map((post, index) => (

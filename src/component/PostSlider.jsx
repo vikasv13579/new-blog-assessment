@@ -47,14 +47,7 @@ export default function Slider(props) {
             })}
         </Swiper>
 
-        <div
-          className="swiper_btn"
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginTop: "20px",
-          }}
-        >
+        <div className="swiper_btn">
           <button className="swiper-button-prev btn btn_outline_primary">
             <Image src={Pre} alt="icon" width={16} height={16} /> Previous
           </button>

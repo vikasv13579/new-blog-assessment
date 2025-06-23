@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useWindowWidth from "@/hook/useWindowWidth";
 import AuthorIntro from "./AuthorIntro";
 import ArticleNavigation from "./ArticleNavigation";
@@ -9,7 +9,15 @@ import ArticleNavigation from "./ArticleNavigation";
 const ArticleBlock = React.memo(function ArticleBlock(props) {
   const { author_img, author_name, author_description, date, body } =
     props.postdetails;
+  console.log("body :>> ", body);
   const width = useWindowWidth();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const showArticleNavigation = isClient && width >= 767;
 
   return (
     <article className="article_block">
@@ -37,7 +45,7 @@ const ArticleBlock = React.memo(function ArticleBlock(props) {
           author_name={author_name}
           author_description={author_description}
         />
-        {width >= 767 && <ArticleNavigation />}
+        {showArticleNavigation && <ArticleNavigation />}
       </div>
     </article>
   );
